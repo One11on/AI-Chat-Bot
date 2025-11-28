@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Chatbot</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bot/css/style.css' %}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Gemini Chatbot</h1>
+        </div>
+        
+        <!-- This div MUST have id="chatMessages" -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-bubble">
+                    Hello! I'm your Gemini AI assistant. How can I help you today?
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <div class="input-group">
+                <!-- CSRF token for Django -->
+                {% csrf_token %}
+                
+                <!-- This input MUST have id="messageInput" -->
+                <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
+                
+                <!-- This button MUST have id="sendButton" -->
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Debug script -->
+    <script>
+        console.log('Home page loaded successfully!');
+        console.log('Static files path:', "{% static 'bot/js/script.js' %}");
+        
+        // Check if elements exist on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Checking elements...');
+            console.log('messageInput:', document.getElementById('messageInput'));
+            console.log('sendButton:', document.getElementById('sendButton'));
+            console.log('chatMessages:', document.getElementById('chatMessages'));
+            console.log('csrf token:', document.querySelector('[name=csrfmiddlewaretoken]'));
+        });
+    </script>
+
+    <script src="{% static 'bot/js/script.js' %}"></script>
+</body>
+</html>
